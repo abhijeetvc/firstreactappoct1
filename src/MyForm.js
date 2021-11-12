@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 
 function MyForm(){
 
@@ -10,15 +10,80 @@ function MyForm(){
     }
 
     const [person,setPerson]=React.useState(personObj)
+    const [users,setUsers]=React.useState([])
 
     const onValueChange=(event)=>{
          console.log(event.target);
          setPerson({...person,[event.target.name]:event.target.value})
     }
 
+    const user={
+        userId:1,
+        title:"Demo Title",
+        body:"Demo Content"
+    }
+
     const displayData=(e)=>{
         e.preventDefault()
-        console.log(person);
+        console.log(user);
+
+        //logic for api call to be written here
+        fetch("https://jsonplaceholder.typicode.com/posts",{
+            headers:{
+                body:user,
+                method:"POST",
+                "Content-Type":"application/json"
+            }
+        })
+             .then(response=>{console.log(response.json());})
+            
+    }
+
+
+    // 1st way
+    //  useEffect(()=>{
+    //      console.log("hiiiiiiiiii");
+    //     fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then(response=>response.json())
+    //     .then(res=>{
+    //         setUsers(res)
+    //     })
+    //  })
+
+    // 2nd way
+    //  useEffect(()=>{
+    //     console.log("hiiiiiiiiii");
+    //     fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then(response=>response.json())
+    //     .then(res=>{
+    //         setUsers(res)
+    //     })
+    //  },[])  // execute only once
+
+    const[value,setValue]=React.useState(0)
+
+     // 3rd way
+    //  useEffect(()=>{
+    //     console.log("hiiiiiiiiii");
+    //     fetch("https://jsonplaceholder.typicode.com/users")
+    //     .then(response=>response.json())
+    //     .then(res=>{
+    //         setUsers(res)
+    //     })
+    //  },[value])
+
+
+    const getData=()=>{
+
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(response=>response.json())
+            .then(res=>{
+                setUsers(res)
+            })
+    }
+
+    const changeValue=()=>{
+        setValue(value+1)
     }
     
     return(
@@ -38,6 +103,16 @@ function MyForm(){
 
                 <input type="submit" value="Submit"/>                
             </form>
+
+            <button type="button" onClick={getData}>Get Data</button>
+            <button type="button" onClick={changeValue}>Change Value</button>
+
+
+            <ul>
+                {users.map((user)=>(
+                    <li>{user.name}</li>
+                ))}
+            </ul>
         </div>
     )
 }
