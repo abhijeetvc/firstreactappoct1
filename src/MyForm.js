@@ -1,4 +1,5 @@
 import React,{useEffect} from 'react'
+import axios from 'axios'
 
 function MyForm(){
 
@@ -28,15 +29,24 @@ function MyForm(){
         console.log(user);
 
         //logic for api call to be written here
-        fetch("https://jsonplaceholder.typicode.com/posts",{
-            headers:{
-                body:user,
-                method:"POST",
-                "Content-Type":"application/json"
-            }
-        })
-             .then(response=>{console.log(response.json());})
-            
+        // fetch("https://jsonplaceholder.typicode.com/posts",{
+        //     headers:{
+        //         body:user,
+        //         method:"POST",
+        //         "Content-Type":"application/json"
+        //     }
+        // })
+        //      .then(response=>{console.log(response.json());})      
+
+        axios.post("https://jsonplaceholder.typicode.com/posts",user)
+                .then(response=>{
+                              console.log(response.status);
+                    if(response.status==201){
+                        console.log("Data submitted successfully!!!");
+                     }else{
+                         console.log("SOmething went wrong!!!");
+                     }
+                 })
     }
 
 
@@ -75,9 +85,16 @@ function MyForm(){
 
     const getData=()=>{
 
-        fetch("https://jsonplaceholder.typicode.com/users")
+        // fetch("https://jsonplaceholder.typicode.com/users")
+        //     .then(response=>response.json())
+        //     .then(res=>{
+        //         setUsers(res)
+        //     })
+
+        axios.get("https://jsonplaceholder.typicode.com/users")
             .then(response=>response.json())
             .then(res=>{
+                console.log(res);
                 setUsers(res)
             })
     }
