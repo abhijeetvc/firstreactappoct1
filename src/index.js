@@ -8,9 +8,12 @@ import MyForm from './MyForm';
 import ParentComponent from './ParentComponent';
 import PropsDemo from './PropsDemo';
 import StateClassDemo from './StateClassDemo'
+import UseContextDemo from './UseContextDemo';
+import UseContextUpdate from './UseContextUpdate';
+import UseMemoHook from './UseMemoHook';
 
 ReactDOM.render(
-    <App/>
+    <UseMemoHook/>
 ,
   document.getElementById('root')
 );
