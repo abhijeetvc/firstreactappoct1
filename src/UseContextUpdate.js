@@ -35,7 +35,6 @@ function MyComp12(){
     const {number}=useContext(ContextValue)
 
    return(
-
        <h2>C2, Value is : {number}</h2>
    )
 }

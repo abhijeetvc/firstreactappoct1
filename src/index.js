@@ -11,9 +11,10 @@ import StateClassDemo from './StateClassDemo'
 import UseContextDemo from './UseContextDemo';
 import UseContextUpdate from './UseContextUpdate';
 import UseMemoHook from './UseMemoHook';
+import ValidateForm from './ValidateForm';
 
 ReactDOM.render(
-    <UseMemoHook/>
+    <ValidateForm/>
 ,
   document.getElementById('root')
 );

@@ -18,7 +18,6 @@ function ParentComponent(){
 }
 
 function ChildComponent({inputValue,onInputChange}){
-
     return(
         <div>
             <input type="text" value={inputValue} onChange={onInputChange}/>

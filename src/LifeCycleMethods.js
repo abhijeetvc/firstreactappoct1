@@ -42,7 +42,6 @@ class LifeCycleMethods extends React.Component{
                 <p>Number is : {this.state.number}</p>
                 <button type="button" onClick={this.incrementValue}>Increment Value</button>
                 <button type="button" onClick={this.toggleComponent}>Toggle</button>
-
                 {component}
             </div>
         )

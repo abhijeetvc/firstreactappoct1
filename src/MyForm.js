@@ -26,8 +26,13 @@ function MyForm(){
 
     const displayData=(e)=>{
         e.preventDefault()
-        console.log(user);
+       // console.log(user);
 
+        console.log(person);
+        
+       
+        document.getElementById("myform").reset()
+        
         //logic for api call to be written here
         // fetch("https://jsonplaceholder.typicode.com/posts",{
         //     headers:{
@@ -38,15 +43,18 @@ function MyForm(){
         // })
         //      .then(response=>{console.log(response.json());})      
 
-        axios.post("https://jsonplaceholder.typicode.com/posts",user)
-                .then(response=>{
-                              console.log(response.status);
-                    if(response.status==201){
-                        console.log("Data submitted successfully!!!");
-                     }else{
-                         console.log("SOmething went wrong!!!");
-                     }
-                 })
+      //  axios.post("https://jsonplaceholder.typicode.com/posts",user)
+                // .then(response=>{
+                //               console.log(response.status);
+                //     if(response.status==201){
+                //         console.log("Data submitted successfully!!!");
+                //         setPerson(personObj)
+                //      }else{
+                //          console.log("SOmething went wrong!!!");
+                //      }
+                //  })
+                 
+                 console.log(person);
     }
 
 
@@ -105,7 +113,7 @@ function MyForm(){
     
     return(
         <div>
-            <form onSubmit={displayData}>
+            <form onSubmit={displayData} id="myform">
                 <label> FirstName : </label>
                 <input type="text" name="firstName" onChange={onValueChange}/>
 
