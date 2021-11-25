@@ -1,5 +1,15 @@
 import React from 'react'
 
+
+const validateEmailReg=RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+
+const formValidate=error=>{
+    console.log(error);
+    let isValid=true
+    Object.values(error).forEach(val=>val.length>0 && (!isValid))
+    return isValid
+}
+
 function ValidateForm(){
 
     const[fullName,setFullName]=React.useState('')
@@ -31,21 +41,35 @@ function ValidateForm(){
 
         switch(name){
             case 'fullName':
-                console.log('Checking Full Name field!!!');
-                checkError=value.length<6 ? 'Full Name Length must be greater than equal to 6':''
+              //  console.log('Checking Full Name field!!!');
+                error.fullName=value.length<6 ? 'Full Name Length must be greater than equal to 6':''
                 break;
+
+            case 'email':
+                error.email=validateEmailReg.test(value)? '':'Invalid Email!!!'
+                break;
+                    
+            case 'password':
+                error.password=value.length<6 ? 'Invalid Password':''
+                break; 
 
             default:
                 break;    
         }
 
-        setError({...error,[name]:checkError})
+        setError({...error,[name]:value})
 
-        console.log(error);
+      //  console.log(error);
 
     }
 
-    const submitData=()=>{
+    const submitData=(e)=>{
+        e.preventDefault()
+        if(formValidate(error)){
+            console.log('Valid Form');
+        }else{
+            console.log('Invalid Form');
+        }
 
     }
 
@@ -55,7 +79,7 @@ function ValidateForm(){
             <form onSubmit={submitData}> 
                 <div>
                     <label> FullName : </label>
-                    <input type='text' name='fullName' onChange={handleChange} />
+                    <input type='text' name='fullName' onChange={handleChange} noValidate/>
                     {
                         error.fullName.length>0 &&
                         <span>{error.fullName}</span>
@@ -64,7 +88,7 @@ function ValidateForm(){
 
                 <div>
                     <label> Email : </label>
-                    <input type='email' name='email' onChange={handleChange} />
+                    <input type='email' name='email' onChange={handleChange} noValidate/>
                     {
                         error.email.length>0 &&
                         <span>{error.email}</span>
@@ -73,7 +97,7 @@ function ValidateForm(){
 
                 <div>
                     <label> Password : </label>
-                    <input type='password' name='password' onChange={handleChange} />
+                    <input type='password' name='password' onChange={handleChange} noValidate />
                     {
                         error.password.length>0 &&
                         <span>{error.password}</span>
