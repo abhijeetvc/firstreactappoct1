@@ -20,6 +20,7 @@ function UseContextUpdate(){
 }
 
 function MyComp1(){
+    
      const {number,changeValue}=useContext(ContextValue)
 
     return(

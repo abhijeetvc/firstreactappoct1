@@ -6,8 +6,23 @@ const validateEmailReg=RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
 const formValidate=error=>{
     console.log(error);
     let isValid=true
-    Object.values(error).forEach(val=>val.length>0 && (!isValid))
-    return isValid
+
+    if(error.fullName.length>=6 && error.password.length>=6){
+        return isValid
+    }else{
+        return !isValid
+    }
+    // Object.values(error).forEach(val=>{
+    //     console.log(val + " : "+val.length);
+    //     if(val.length>0){
+    //         console.log('test' +isValid);
+            
+    //         return isValid
+    //     }
+    // })
+    // console.log("Hiiiiii "+isValid);
+    
+    // return isValid
 }
 
 function ValidateForm(){
@@ -65,9 +80,12 @@ function ValidateForm(){
 
     const submitData=(e)=>{
         e.preventDefault()
+        //console.log(formValidate(error));
         if(formValidate(error)){
+
             console.log('Valid Form');
         }else{
+            
             console.log('Invalid Form');
         }
 
