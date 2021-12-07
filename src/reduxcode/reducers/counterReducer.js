@@ -14,6 +14,8 @@ const counterReducer=(state = 100,action)=>{
             return newState=state - action.payload
             
         default:
+            console.log(state);
+
             return state    
      }
 

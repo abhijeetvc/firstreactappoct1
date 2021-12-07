@@ -4,6 +4,7 @@ import App from './App';
 import {createStore} from 'redux'
 import { Provider } from 'react-redux';
 
+import counterReducer from './reduxcode/reducers';
 // import EventsDemo from './EventsDemo';
 // import LifeCycleMethods from './LifeCycleMethods';
 // import MyApp1 from './MyApp1'
@@ -16,8 +17,9 @@ import { Provider } from 'react-redux';
 // import UseMemoHook from './UseMemoHook';
 // import UseRefDemo from './UseRefDemo';
 // import ValidateForm from './ValidateForm';
+import Home from './reduxcode/Home'
 
-const store=createStore()
+const store=createStore(counterReducer) // value=100
 
 ReactDOM.render(
     <Provider store={store}>
